@@ -16,3 +16,15 @@ app.get("/test", (req, res, next) => {
         })        
     }
 })
+
+app.get("/test/2", (req, res, next) => {
+    try {
+        res.status(200).json({
+            message: "successfull to get api"
+        })
+    } catch (error) {
+        res.status(400).json({
+            message: "error!"
+        })        
+    }
+})
