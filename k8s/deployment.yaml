@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: nodejs-app
-          image: enrichosamb/node-js:latest  # <- pastikan image ini sudah ada di Docker Hub atau ganti sesuai registry kamu
+          image: enalka15/learn-ant-test:latest  # <- pastikan image ini sudah ada di Docker Hub atau ganti sesuai registry kamu
           ports:
             - containerPort: 3000
