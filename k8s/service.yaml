@@ -4,5 +4,5 @@ spec:
     app: nodejs-app
   ports:
     - protocol: TCP
-      port: 80
+      port: 8090
       targetPort: 3000
