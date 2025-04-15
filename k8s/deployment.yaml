@@ -20,7 +20,7 @@ spec:
           imagePullPolicy: Always
           # Remove the DOCKER_DEFAULT_PLATFORM environment variable
           ports:
-            - containerPort: 3000
+            - containerPort: 5050
 
 ---
 
@@ -34,6 +34,6 @@ spec:
   selector:
     app: nodejs-app
   ports:
-    - port: 80
-      targetPort: 3000
+    - port: 5050
+      targetPort: 3500
   type: ClusterIP
