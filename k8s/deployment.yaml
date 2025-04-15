@@ -17,5 +17,9 @@ spec:
       containers:
         - name: nodejs-app
           image: enrichosamb/node-js:latest  # <- pastikan image ini sudah ada di Docker Hub atau ganti sesuai registry kamu
+          imagePullPolicy: Always
+          env:
+            - name: DOCKER_DEFAULT_PLATFORM
+              value: linux/amd64
           ports:
             - containerPort: 3000
