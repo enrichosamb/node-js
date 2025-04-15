@@ -2,10 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nodejs-app-service
+  labels:
+    app: nodejs-app
 spec:
   selector:
-    app: nodejs-app  # Pastikan ini sesuai dengan label di deployment.yaml
+    app: nodejs-app
   ports:
-    - port: 3900
-      targetPort: 5050  # Port aplikasi Node.js Anda
-  type: LoadBalancer
+    - port: 80
+      targetPort: 3000
+  type: ClusterIP
