@@ -13,5 +13,56 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Check System Information
+        run: |
+          echo "=== System Information ==="
+          hostname
+          whoami
+          pwd
+          uname -a
+
+      - name: Check IP Addresses
+        run: |
+          echo "=== Network Information ==="
+          echo "Container Internal IP:"
+          hostname -I
+
+          echo "All Network Interfaces:"
+          ip addr show | grep inet
+
+          echo "Default Route:"
+          ip route | grep default
+
+          echo "DNS Configuration:"
+          cat /etc/resolv.conf
+
+      - name: Check Docker Host IP
+        run: |
+          echo "=== Docker Information ==="
+          echo "Docker Version:"
+          docker --version
+
+          echo "Docker Host IP (from container perspective):"
+          ip route show default | awk '/default/ {print $3}'
+
+          echo "Container Gateway:"
+          ip route | grep default | awk '{print $3}'
+
+          echo "Docker Networks:"
+          docker network ls
+
+      - name: Additional Network Checks
+        run: |
+          echo "=== Additional Network Info ==="
+          echo "External IP (if accessible):"
+          curl -s ifconfig.me || echo "External IP check failed"
+
+          echo "Local Network Interfaces:"
+          ifconfig -a || ip a
+
+          echo "Listening Ports:"
+          netstat -tuln || ss -tuln
+
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
